@@ -1,0 +1,38 @@
+{
+  "name": "facility",
+  "version": "1.0.0",
+  "description": "[classified]",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/5angel/facility.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/5angel/facility/issues"
+  },
+  "homepage": "https://github.com/5angel/facility#readme",
+  "dependencies": {
+    "riot": "^2.4.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "css-loader": "^0.23.1",
+    "file-loader": "^0.9.0",
+    "image-webpack-loader": "^1.8.0",
+    "json-loader": "^0.5.4",
+    "postcss-loader": "^0.9.1",
+    "riotjs-loader": "^3.0.0",
+    "style-loader": "^0.13.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^2.1.1",
+    "webpack": "^1.13.1"
+  }
+}

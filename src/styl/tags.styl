@@ -1,0 +1,30 @@
+$SCREEN_WIDTH = 640px
+$SCREEN_HEIGHT = 480px
+
+.screen
+  absoluteCCW(50%, 50%)
+  size($SCREEN_WIDTH, $SCREEN_HEIGHT)
+  margin-top -($SCREEN_HEIGHT / 2)
+  margin-left -($SCREEN_WIDTH / 2)
+  background-color lighten(black, 20)
+
+.phrase
+  absolute(auto, 0, 0)
+  width 100%
+  text-align left
+
+  &
+  &__text
+    padding 10px
+
+  &__name
+  &__text
+    border 2px solid white
+    background-color black
+
+  &__name
+    display inline-block
+    margin-bottom -2px
+    padding 4px 10px 0
+    border-bottom-width 0
+    vertical-align bottom
