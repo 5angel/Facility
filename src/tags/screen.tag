@@ -1,5 +1,5 @@
 <screen class="screen">
-    <phrase data="{ phrase }"></phrase>
+    <facility></facility>
     <script>
         this.mixin('screen');
     </script>

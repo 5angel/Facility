@@ -48,22 +48,40 @@
 	
 	__webpack_require__(4);
 	
-	__webpack_require__(8);
+	var _popover = __webpack_require__(8);
 	
-	__webpack_require__(9);
+	var _popover2 = _interopRequireDefault(_popover);
 	
 	var _screen = __webpack_require__(10);
 	
 	var _screen2 = _interopRequireDefault(_screen);
 	
-	var _phrase = __webpack_require__(13);
+	var _facility = __webpack_require__(11);
 	
-	var _phrase2 = _interopRequireDefault(_phrase);
+	var _facility2 = _interopRequireDefault(_facility);
+	
+	var _cellControls = __webpack_require__(12);
+	
+	var _cellControls2 = _interopRequireDefault(_cellControls);
+	
+	var _mixins = __webpack_require__(13);
+	
+	var _mixins2 = _interopRequireDefault(_mixins);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	var tagsContext = __webpack_require__(14);
+	
+	tagsContext.keys().forEach(function (key) {
+	  return tagsContext(key);
+	});
+	
+	riot.mixin(_mixins2.default);
+	
+	riot.mixin('popover', _popover2.default);
 	riot.mixin('screen', _screen2.default);
-	riot.mixin('phrase', _phrase2.default);
+	riot.mixin('facility', _facility2.default);
+	riot.mixin('cell-controls', _cellControls2.default);
 	
 	riot.mount('screen');
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
@@ -2648,7 +2666,7 @@
 	
 	
 	// module
-	exports.push([module.id, "* {\n  box-sizing: border-box;\n}\nhtml,\nbody {\n  overflow: hidden;\n  width: 100%;\n  height: 100%;\n}\nbody {\n  background-color: #000;\n  font-family: 'Roboto', Arial, serif;\n  font-weight: 400;\n  color: #fff;\n}\n.screen {\n  position: absolute;\n  top: 50%;\n  right: auto;\n  bottom: auto;\n  left: 50%;\n  width: 640px;\n  height: 480px;\n  margin-top: -240px;\n  margin-left: -320px;\n  background-color: #333;\n}\n.phrase {\n  position: absolute;\n  top: auto;\n  right: 0;\n  bottom: 0;\n  left: auto;\n  width: 100%;\n  text-align: left;\n}\n.phrase,\n.phrase__text {\n  padding: 10px;\n}\n.phrase__name,\n.phrase__text {\n  border: 2px solid #fff;\n  background-color: #000;\n}\n.phrase__name {\n  display: inline-block;\n  margin-bottom: -2px;\n  padding: 4px 10px 0;\n  border-bottom-width: 0;\n  vertical-align: bottom;\n}\n", ""]);
+	exports.push([module.id, "* {\n  box-sizing: border-box;\n}\nhtml,\nbody {\n  overflow: hidden;\n  width: 100%;\n  height: 100%;\n}\nbody {\n  margin: 0;\n  font-family: 'Roboto', Arial, serif;\n  font-weight: 400;\n}\n.screen {\n  display: block;\n  width: 100%;\n  height: 100%;\n  background-color: #808080;\n  text-align: center;\n}\n.facility {\n  display: inline-block;\n  border: 2px solid #000;\n}\n.facility__outer {\n  border-spacing: 0;\n}\n.facility__roof .cell {\n  height: 40px;\n}\n.cell {\n  border: 2px solid #000;\n  background-color: #fff;\n}\n.cell,\n.cell-controls {\n  width: 160px;\n  height: 120px;\n}\n.cell_type_stairs {\n  width: 40px;\n}\n.cell-controls {\n  position: relative;\n  border: 2px solid #f00;\n}\n.cell-merge {\n  position: absolute;\n  outline: 0;\n  border: 0;\n  background-color: #00f;\n}\n.cell-merge_up,\n.cell-merge_down {\n  width: 100%;\n  height: 40px;\n}\n.cell-merge_right,\n.cell-merge_left {\n  width: 40px;\n  height: 100%;\n}\n.cell-merge_up {\n  position: absolute;\n  top: -40px;\n  right: auto;\n  bottom: auto;\n  left: 0;\n}\n.cell-merge_right {\n  position: absolute;\n  top: 0;\n  right: auto;\n  bottom: auto;\n  left: 100%;\n}\n.cell-merge_down {\n  position: absolute;\n  top: 100%;\n  right: auto;\n  bottom: auto;\n  left: 0;\n}\n.cell-merge_left {\n  position: absolute;\n  top: 0;\n  right: auto;\n  bottom: auto;\n  left: -40px;\n}\n", ""]);
 	
 	// exports
 
@@ -2964,28 +2982,6 @@
 /* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(riot) {'use strict';
-	
-	riot.tag2('screen', '<phrase data="{phrase}"></phrase>', '', 'class="screen"', function (opts) {
-	        this.mixin('screen');
-	});
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ },
-/* 9 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(riot) {'use strict';
-	
-	riot.tag2('phrase', '<div class="phrase__name">{name}</div> <div class="phrase__text">{text}</div>', '', 'class="phrase"', function (opts) {
-	        this.mixin('phrase');
-	});
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ },
-/* 10 */
-/***/ function(module, exports, __webpack_require__) {
-
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
@@ -2994,135 +2990,167 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _narrator = __webpack_require__(11);
-	
-	var _narrator2 = _interopRequireDefault(_narrator);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _utils = __webpack_require__(9);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var Screen = function () {
-	    function Screen() {
-	        _classCallCheck(this, Screen);
+	var Popover = function () {
+	    function Popover() {
+	        _classCallCheck(this, Popover);
 	    }
 	
-	    _createClass(Screen, [{
+	    _createClass(Popover, [{
 	        key: 'init',
 	        value: function init() {
-	            this._narrator = new _narrator2.default();
+	            this.hide();
+	        }
+	    }, {
+	        key: 'show',
+	        value: function show(e) {
+	            this.item = e.item;
 	
-	            this.phrase = this._narrator.start('intro');
+	            var rect = e.target.getBoundingClientRect();
+	
+	            (0, _utils.setStyles)(this.root, {
+	                display: 'block',
+	                position: 'absolute',
+	                top: rect.top + 'px',
+	                left: rect.left + 'px'
+	            });
+	        }
+	    }, {
+	        key: 'hide',
+	        value: function hide() {
+	            (0, _utils.setStyles)(this.root, {
+	                display: 'none'
+	            });
 	        }
 	    }]);
 	
-	    return Screen;
+	    return Popover;
 	}();
+	
+	exports.default = Popover;
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.toDashCase = toDashCase;
+	exports.setStyles = setStyles;
+	function toDashCase(str) {
+	    return str.replace(/([A-Z])/g, function ($1) {
+	        return '-' + $1.toLowerCase();
+	    });
+	}
+	
+	function setStyles(target, styles) {
+	    var str = Object.keys(styles).reduce(function (str, key) {
+	        return str += toDashCase(key) + ':' + styles[key] + ';';
+	    }, '');
+	
+	    target.setAttribute('style', str);
+	}
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var Screen = function Screen() {
+	  _classCallCheck(this, Screen);
+	};
 	
 	exports.default = Screen;
 
 /***/ },
 /* 11 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	
-	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _dialogs = __webpack_require__(12);
-	
-	var _dialogs2 = _interopRequireDefault(_dialogs);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var Narrator = function () {
-	    function Narrator() {
-	        _classCallCheck(this, Narrator);
-	
-	        this._current = null;
-	        this._index = -1;
+	var Facility = function () {
+	    function Facility() {
+	        _classCallCheck(this, Facility);
 	    }
 	
-	    _createClass(Narrator, [{
-	        key: 'start',
-	        value: function start(name) {
-	            var list = _dialogs2.default[name];
+	    _createClass(Facility, [{
+	        key: "init",
+	        value: function init() {
+	            this.width = Facility.WIDTH_DEFAULT;
+	            this.height = Facility.HEIGHT_DEFAULT;
 	
-	            if (!list) {
-	                throw new Error('No dialog with name "' + name + '" found');
-	            }
-	
-	            this._current = name;
-	
-	            return this.next();
+	            this.table = this._fillCells();
 	        }
 	    }, {
-	        key: 'next',
-	        value: function next() {
-	            this._index++;
+	        key: "getCell",
+	        value: function getCell() {
+	            var x = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	            var y = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
 	
-	            var phrase = _dialogs2.default[this._current][this._index];
-	
-	            if (!phrase) {
-	                throw new Error('Dialog "' + this._current + '" is out of bounds (' + this._index + ')');
-	            }
-	
-	            if (typeof phrase === 'string') {
-	                return Narrator.parsePhrase(phrase);
-	            }
+	            return this.table[y][x];
 	        }
-	    }], [{
-	        key: 'parsePhrase',
-	        value: function parsePhrase(phrase) {
-	            if (typeof phrase !== 'string') {
-	                throw new TypeError('Can\'t parse a non-string phrase');
+	    }, {
+	        key: "_fillCells",
+	        value: function _fillCells() {
+	            var table = [];
+	
+	            for (var y = 0; y < this.height; ++y) {
+	                var floor = [];
+	
+	                for (var x = 0; x < this.width; ++x) {
+	                    floor.push({
+	                        x: x, y: y,
+	                        width: 1,
+	                        height: 1
+	                    });
+	                }
+	
+	                table.push(floor);
 	            }
 	
-	            var _phrase$match = phrase.match(Narrator.PHRASE_REGEXP);
-	
-	            var _phrase$match2 = _slicedToArray(_phrase$match, 3);
-	
-	            var result = _phrase$match2[0];
-	            var name = _phrase$match2[1];
-	            var text = _phrase$match2[2];
-	
-	
-	            return { name: name, text: text };
+	            return table;
+	        }
+	    }, {
+	        key: "repeat",
+	        value: function repeat(times) {
+	            return new Array(times);
 	        }
 	    }]);
 	
-	    return Narrator;
+	    return Facility;
 	}();
 	
-	exports.default = Narrator;
+	exports.default = Facility;
 	
 	
-	Narrator.PHRASE_REGEXP = /(\w+):\s?(.+)/;
+	Facility.WIDTH_DEFAULT = 4;
+	Facility.HEIGHT_DEFAULT = 2;
 
 /***/ },
 /* 12 */
 /***/ function(module, exports) {
 
-	module.exports = {
-		"intro": [
-			"Tutor: Hey, good morning! This is your first day in the Facility, huh.",
-			"Tutor: We haven't been hiring in a while, so it's nice to see a new face here.",
-			"Tutor: Don't worry, you'll adapt soon enough. I'll help you go through the basic training."
-		]
-	};
-
-/***/ },
-/* 13 */
-/***/ function(module, exports) {
-
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
@@ -3133,23 +3161,136 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var Phrase = function () {
-	    function Phrase() {
-	        _classCallCheck(this, Phrase);
+	var CellControls = function () {
+	    function CellControls() {
+	        _classCallCheck(this, CellControls);
 	    }
 	
-	    _createClass(Phrase, [{
+	    _createClass(CellControls, [{
 	        key: 'init',
 	        value: function init() {
-	            this.name = this.opts.data.name || '';
-	            this.text = this.opts.data.text || '';
+	            this.directions = ['up', 'right', 'down', 'left'];
+	        }
+	    }, {
+	        key: 'isAllowed',
+	        value: function isAllowed() {
+	            var direction = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	
+	            var cell = this.item.cell;
+	
+	            switch (direction) {
+	                default:
+	                    return cell.y > 0;
+	                case 1:
+	                    return cell.x + cell.width < this.parent.width;
+	                case 2:
+	                    return cell.y + cell.height < this.parent.height;
+	                case 3:
+	                    return cell.x > 0;
+	            }
+	        }
+	    }, {
+	        key: 'mergeTo',
+	        value: function mergeTo() {
+	            var direction = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	
+	            var cell = this.item.cell;
+	
+	            switch (direction) {
+	                default:
+	                    var right = this.parent.getCell(cell.x + cell.width, cell.y);
+	
+	                    right.width = 0;
+	                    right.height = 0;
+	
+	                    cell.width++;
+	
+	                    break;
+	            }
+	            console.log(this.parent.table);
+	            this.parent.update();
+	            this.hide();
 	        }
 	    }]);
 	
-	    return Phrase;
+	    return CellControls;
 	}();
 	
-	exports.default = Phrase;
+	exports.default = CellControls;
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = {
+	    listenTo: function listenTo(event, callback) {
+	        var target = arguments.length <= 2 || arguments[2] === undefined ? this : arguments[2];
+	
+	        return target.on(event, callback.bind(this));
+	    }
+	};
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var map = {
+		"./cell-controls.tag": 15,
+		"./facility.tag": 16,
+		"./screen.tag": 17
+	};
+	function webpackContext(req) {
+		return __webpack_require__(webpackContextResolve(req));
+	};
+	function webpackContextResolve(req) {
+		return map[req] || (function() { throw new Error("Cannot find module '" + req + "'.") }());
+	};
+	webpackContext.keys = function webpackContextKeys() {
+		return Object.keys(map);
+	};
+	webpackContext.resolve = webpackContextResolve;
+	module.exports = webpackContext;
+	webpackContext.id = 14;
+
+
+/***/ },
+/* 15 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(riot) {'use strict';
+	
+	riot.tag2('cell-controls', '<button type="button" class="cell-merge cell-merge_{value}" each="{value, i in directions}" if="{isAllowed(i)}" onclick="{mergeTo.bind(this, i)}"></button>', '', '', function (opts) {
+	        this.mixin('popover');
+	        this.mixin('cell-controls');
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(riot) {'use strict';
+	
+	riot.tag2('facility', '<cell-controls name="controls" class="cell-controls"></cell-controls> <table class="facility__outer"> <tbody class="facility__inner"> <tr class="facility__roof"> <th class="cell cell_type_stairs"></th> <th class="cell" each="{repeat(width)}"></th> </tr> <tr class="facility__floor" each="{floor in table}"> <td class="cell cell_type_stairs"></td> <td class="cell" colspan="{cell.width}" rowspan="{cell.height}" if="{cell.width && cell.height}" each="{cell in floor}" onmousedown="{parent.parent.tags.controls.show}"> </td> </tr> </tbody> </table>', '', 'class="facility"', function (opts) {
+	        this.mixin('facility');
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(riot) {'use strict';
+	
+	riot.tag2('screen', '<facility></facility>', '', 'class="screen"', function (opts) {
+	        this.mixin('screen');
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }
 /******/ ]);

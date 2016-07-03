@@ -1,30 +1,57 @@
-$SCREEN_WIDTH = 640px
-$SCREEN_HEIGHT = 480px
-
 .screen
-  absoluteCCW(50%, 50%)
-  size($SCREEN_WIDTH, $SCREEN_HEIGHT)
-  margin-top -($SCREEN_HEIGHT / 2)
-  margin-left -($SCREEN_WIDTH / 2)
-  background-color lighten(black, 20)
+  display block
+  size(100%)
+  background-color gray
+  text-align center
 
-.phrase
-  absolute(auto, 0, 0)
-  width 100%
-  text-align left
+.facility
+  display inline-block
+  border 2px solid black
 
+  &__outer
+    border-spacing 0
+
+  &__roof
+    .cell
+      height 40px
+
+.cell
   &
-  &__text
-    padding 10px
+  &-controls
+    size(160px,120px)
 
-  &__name
-  &__text
-    border 2px solid white
-    background-color black
+  border 2px solid black
+  background-color white
 
-  &__name
-    display inline-block
-    margin-bottom -2px
-    padding 4px 10px 0
-    border-bottom-width 0
-    vertical-align bottom
+  &_type_stairs
+    width 40px
+
+  &-controls
+    position relative
+    border 2px solid red
+
+  &-merge
+    position absolute
+    outline 0
+    border 0
+    background-color blue
+
+    &_up
+    &_down
+      size(100%,40px)
+
+    &_right
+    &_left
+      size(40px, 100%)
+
+    &_up
+      absoluteCCW(-40px,0)
+
+    &_right
+      absoluteCCW(0,100%)
+
+    &_down
+      absoluteCCW(100%,0)
+
+    &_left
+      absoluteCCW(0,-40px)
